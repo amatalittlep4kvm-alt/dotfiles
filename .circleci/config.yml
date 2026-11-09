@@ -1,0 +1,1952 @@
+version: 2.1
+
+jobs:
+  hueTEXTURE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: ya batch the trial balance
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; getent passwd | cut -f7 -d':'; true ; } > /tmp/workshop2/SURGE_NOISE_FOREST_BACKUP
+            echo "gate RolloutImage: $(wc -c </tmp/workshop2/SURGE_NOISE_FOREST_BACKUP) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'SURGE_NOISE_FOREST_BACKUP'
+  RolloutImage:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/SURGE_NOISE_FOREST_BACKUP
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  internal_publish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: yep backfill the outliers
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; printf 'host=localhost\nport=6531\nuser=heidi\ndebug=true\n' >"/tmp/home.csv" && (. "/tmp/home.csv" && echo "$host:$port"); true ; } > /tmp/workshop2/P_51800
+            echo "gate vb: $(wc -c </tmp/workshop2/P_51800) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'P_51800'
+  vb:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/P_51800
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  RULE_H:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Enzyme mix pipetted check
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; LOG='/refund/indigo/diary_laundry.txt' && echo "${LOG#/*/}"; true ; } > /tmp/workshop2/23ed6281f
+            echo "gate Prepare_App2: $(wc -c </tmp/workshop2/23ed6281f) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '23ed6281f'
+  Prepare_App2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/23ed6281f
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  expect_graph_quick:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Per Ines cache the model card
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; for item in denver perth oslo bogota manila; do echo "$item"; done | sort; true ; } > /tmp/workshop2/fnv_fefbec
+            echo "gate shippit: $(wc -c </tmp/workshop2/fnv_fefbec) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'fnv_fefbec'
+  shippit:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/fnv_fefbec
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  hardCtx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: In parallel replay the test shards
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; env -0|tr '\0' '\n'|sed 's/=.*//'|fmt -w 66; true ; } > /tmp/workshop2/pkg_dat
+            echo "gate rollout: $(wc -c </tmp/workshop2/pkg_dat) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'pkg_dat'
+  rollout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ProxyStackAtoll
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  card__legend:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: idk retire the landing page
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; grep -r export /etc/security 2> /dev/null | head -n 6; true ; } > /tmp/workshop2/GPU-2e436_0fed5_GPU
+            echo "gate green-light: $(wc -c </tmp/workshop2/GPU-2e436_0fed5_GPU) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'GPU-2e436_0fed5_GPU'
+  green-light:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/GPU-2e436_0fed5_GPU
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  BMAZA-8290:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: chapter four spot check
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; echo frog duck cat panda shark | xargs printf "%s\n" | sort; true ; } > /tmp/workshop2/error.log.21
+            echo "gate q4-release: $(wc -c </tmp/workshop2/error.log.21) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'error.log.21'
+  q4-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ProxyStackAtoll
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  IOS_Y:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: announce
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; echo 'first, second and third' | tr ' ' '\n' | sort; true ; } > /tmp/workshop2/betavioletnode
+            echo "gate bob-run: $(wc -c </tmp/workshop2/betavioletnode) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'betavioletnode'
+  bob-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/betavioletnode
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  gradient_temp_get_pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: id 9f000e extraction
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; if [ ! -w /etc/passwd ] ; then echo true; else echo false; fi; true ; } > /tmp/workshop2/ton3-holl0w-dream-cli3n7
+            echo "gate produce-quick-test-matrix: $(wc -c </tmp/workshop2/ton3-holl0w-dream-cli3n7) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'ton3-holl0w-dream-cli3n7'
+  produce-quick-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ton3-holl0w-dream-cli3n7
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  undo_-_key:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: yup cache teacher model
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; awk 'END{print NR}' /etc/login.defs|head -1; true ; } > /tmp/workshop2/Af
+            echo "gate helios-beta: $(wc -c </tmp/workshop2/Af) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'Af'
+  helios-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/Af
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  xverax:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: RISKY diff
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; seq 22 | sed 'n;d'; true ; } > /tmp/workshop2/wave-glacier-packet-kernel
+            echo "gate nov15-release: $(wc -c </tmp/workshop2/wave-glacier-packet-kernel) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'wave-glacier-packet-kernel'
+  nov15-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/wave-glacier-packet-kernel
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  DEEP_BUCKET_SETTINGS:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: How many offer letters remain
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; ps -u $(whoami)|head -n5; true ; } > /tmp/workshop2/20210811
+            echo "gate sanity: $(wc -c </tmp/workshop2/20210811) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '20210811'
+  sanity:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/20210811
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  ed-78-cc-76-ba-f7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: kill l10n
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; which bash; true ; } > /tmp/workshop2/g0wE5hit9x4eZ
+            echo "gate QA_VERIFY_7: $(wc -c </tmp/workshop2/g0wE5hit9x4eZ) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'g0wE5hit9x4eZ'
+  QA_VERIFY_7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/g0wE5hit9x4eZ
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  article_spawn_next:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Let the physics layers cook
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; echo {a..c}{1..2}; true ; } > /tmp/workshop2/ab-Backup.dev
+            echo "gate canary: $(wc -c </tmp/workshop2/ab-Backup.dev) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'ab-Backup.dev'
+  canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ab-Backup.dev
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  LANGUAGE_MT_DE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Load the travel claims into prod
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; echo "red green blue" | tee "/tmp/dai5.bak" /tmp/wi5.old >/dev/null && cat /tmp/wi5.old; true ; } > /tmp/workshop2/sample2_11d6
+            echo "gate DATA-899: $(wc -c </tmp/workshop2/sample2_11d6) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'sample2_11d6'
+  DATA-899:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/sample2_11d6
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  ID-STATUS-DTL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Inventory is done
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; grep --context=2 bash /etc/passwd | wc -l; true ; } > /tmp/workshop2/9a63a578e43
+            echo "gate delta: $(wc -c </tmp/workshop2/9a63a578e43) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '9a63a578e43'
+  delta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ProxyStackAtoll
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  file_stage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Rev 7469f
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; ls -t /proc | sed -n '1~2p'; true ; } > /tmp/workshop2/shImmErBlUepacKetcArrIeR
+            echo "gate echo-4: $(wc -c </tmp/workshop2/shImmErBlUepacKetcArrIeR) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'shImmErBlUepacKetcArrIeR'
+  echo-4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ProxyStackAtoll
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  nav-task:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Receive The Loading Bay And Label Express Lane
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; export out=lower; export -p|grep out; true ; } > /tmp/workshop2/ProxyStackAtoll
+            echo "gate fiona-run: $(wc -c </tmp/workshop2/ProxyStackAtoll) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'ProxyStackAtoll'
+  fiona-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ProxyStackAtoll
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  HF-843-recv-resource:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Tier XI help center translation
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; cat /proc/filesystems | grep --extended-regexp '^(proc|tmpfs)' | nl; true ; } > /tmp/workshop2/Hawk.lazy.613.8895
+            echo "gate java17-build: $(wc -c </tmp/workshop2/Hawk.lazy.613.8895) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'Hawk.lazy.613.8895'
+  java17-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ProxyStackAtoll
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  Save-Writer2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: CollisionMeshBundleStep
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; printf %s "it is raining" | md5sum | awk '{print $1}'; true ; } > /tmp/workshop2/stage_c3b8b
+            echo "gate wip-metrics-crash: $(wc -c </tmp/workshop2/stage_c3b8b) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'stage_c3b8b'
+  wip-metrics-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/stage_c3b8b
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  device400:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: idk thumbnail the gif previews
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; for thing in $(seq 7); do echo $thing; done; true ; } > /tmp/workshop2/CRANetradE
+            echo "gate perseus-plus: $(wc -c </tmp/workshop2/CRANetradE) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'CRANetradE'
+  perseus-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/CRANetradE
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  D9-FD-DE-5D:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: FINGERPRINT PERMISSIONS END
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; printf '%d\n' 9 423 368 210 253 168|tac|head -n 2; true ; } > /tmp/workshop2/fenForestTone
+            echo "gate build-staging-release-candidate: $(wc -c </tmp/workshop2/fenForestTone) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'fenForestTone'
+  build-staging-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ProxyStackAtoll
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  loop-route:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Sanitise the blog post whilst idle
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; cat /proc/sys/fs/file-nr |head -n15; true ; } > /tmp/workshop2/2026-11-06T18-16
+            echo "gate push-it: $(wc -c </tmp/workshop2/2026-11-06T18-16) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '2026-11-06T18-16'
+  push-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/ProxyStackAtoll
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  teardown_cont:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: TrueUpPettyCash
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; if [ -e /proc/self ];then echo "true"; elif [ -e /tmp ];then echo maybe; else echo false; fi; true ; } > /tmp/workshop2/5849eeec
+            echo "gate v5-rc5: $(wc -c </tmp/workshop2/5849eeec) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '5849eeec'
+  v5-rc5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/5849eeec
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  l:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: soo invoice the ledger
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; find /usr/lib -type d -iname '*.conf' -mtime 0 -exec stat -c %n '{}' ";" 2>/dev/null | head -n2; true ; } > /tmp/workshop2/1xGyZ3lT
+            echo "gate rl-2a: $(wc -c </tmp/workshop2/1xGyZ3lT) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '1xGyZ3lT'
+  rl-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/1xGyZ3lT
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  Stage-Model:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: row 9 renew the socket pool b
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; truncate -s 100K "/tmp/potatopaymentgroup.list" && du -h --apparent-size "/tmp/potatopaymentgroup.list"; true ; } > /tmp/workshop2/PANO59708
+            echo "gate auh-check: $(wc -c </tmp/workshop2/PANO59708) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'PANO59708'
+  auh-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/PANO59708
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  deferPendingCountMax:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: For round two review the runbook
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; tar -C /etc -cf - hosts| gzip -c >'/tmp/scripts.tgz' && tar -tzf '/tmp/scripts.tgz'; true ; } > /tmp/workshop2/h3a7hgr0v3
+            echo "gate zed-verify: $(wc -c </tmp/workshop2/h3a7hgr0v3) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'h3a7hgr0v3'
+  zed-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/h3a7hgr0v3
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  profilesById:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: RELOAD SHA 19D89
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; for p in whale zebra cat; do echo ${p^^}; done|wc -l; true ; } > /tmp/workshop2/run_462
+            echo "gate november: $(wc -c </tmp/workshop2/run_462) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'run_462'
+  november:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/run_462
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  littleFrost:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: CHUNK 5 MIGRATION NOTE EXPORT B
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; PREFIX=/pantry/orange/sheet/upload.py; printf '%s\n' "${PREFIX: -3}"; true ; } > /tmp/workshop2/module_mapper
+            echo "gate qa-01: $(wc -c </tmp/workshop2/module_mapper) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'module_mapper'
+  qa-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/module_mapper
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+  globeish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Write off the open invoices day 2
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; if test -e /proc/self; then echo "ok"; else echo "not ok"; fi; true ; } > /tmp/workshop2/v7.7.38
+            echo "gate blast-off: $(wc -c </tmp/workshop2/v7.7.38) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'v7.7.38'
+  blast-off:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Fetch stage E
+          command: |
+            cat /tmp/workshop2/v7.7.38
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 3 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: tar -xj -f build-manifest-stage.tar.bz2
+      - run:
+          name: Cooldown
+          command: mkdir -p artifacts
+      - run:
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          name: Collect artifacts
+          command: date -u
+      - run:
+          command: $PWD/publisher-old
+
+  PatternEnum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Wait for Yusuf to sign off
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; locale -a|awk '{print toupper(substr($0,1,1)) substr($0,2)}'|nl|cut -c1-26|fold -w 29; true ; } > /tmp/workshop2/SURGE_NOISE_FOREST_BACKUP
+            echo "gate RolloutImage: $(wc -c </tmp/workshop2/SURGE_NOISE_FOREST_BACKUP) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'SURGE_NOISE_FOREST_BACKUP'
+  detach-when:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: On success promote the holiday calendar
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; out=(blue red teal); echo "${out[@]^^}"; true ; } > /tmp/workshop2/betavioletnode
+            echo "gate bob-run: $(wc -c </tmp/workshop2/betavioletnode) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'betavioletnode'
+  z_scale:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Deferred revenue is booked by Nina
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; find . -type d -uid 0 -exec du -sh {} \;; true ; } > /tmp/workshop2/20210811
+            echo "gate sanity: $(wc -c </tmp/workshop2/20210811) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '20210811'
+  TempFunc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Mark V running headless browser
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; mkdir -p '/tmp/package-tasks-20250302' && cd '/tmp/package-tasks-20250302' && pwd; true ; } > /tmp/workshop2/wave-glacier-packet-kernel
+            echo "gate nov15-release: $(wc -c </tmp/workshop2/wave-glacier-packet-kernel) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'wave-glacier-packet-kernel'
+  RATE_SECRET:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Nuke the pricing page
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -name "*release" -size 0 -exec basename {} ";" 2>/dev/null | sort | head -n 3; true ; } > /tmp/workshop2/stage_c3b8b
+            echo "gate wip-metrics-crash: $(wc -c </tmp/workshop2/stage_c3b8b) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'stage_c3b8b'
+  Shade2IRQ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Close the ledger day 4
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; cp /etc/os-release "/tmp/inventory-salt.copy" && sed -i.bak 's/^NAME=/OS_NAME=/' "/tmp/inventory-salt.copy" && grep -c . "/tmp/inventory-salt.copy"; true ; } > /tmp/workshop2/sample2_11d6
+            echo "gate DATA-899: $(wc -c </tmp/workshop2/sample2_11d6) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'sample2_11d6'
+  salt_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Render chapter markers and export timeline
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; echo "pay the rent" >"${TMPDIR:-/tmp}/outer.txt" && du -h "${TMPDIR:-/tmp}/outer.txt"; true ; } > /tmp/workshop2/run_462
+            echo "gate november: $(wc -c </tmp/workshop2/run_462) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'run_462'
+  Split-ViewConfig:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Finance good to go
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; ls -Xv "$HOME"; true ; } > /tmp/workshop2/5849eeec
+            echo "gate v5-rc5: $(wc -c </tmp/workshop2/5849eeec) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '5849eeec'
+  assert_segment_inner:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Gate 26 Monitoring
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; find /etc/skel -name "*" -atime -1 -user $(whoami) -print0 | xargs -0r -n1 basename; true ; } > /tmp/workshop2/g0wE5hit9x4eZ
+            echo "gate QA_VERIFY_7: $(wc -c </tmp/workshop2/g0wE5hit9x4eZ) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'g0wE5hit9x4eZ'
+  cube_register:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: JMP to quarantine
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; echo 'meeting moved to 3pm'|od -An -tx1; true ; } > /tmp/workshop2/GPU-2e436_0fed5_GPU
+            echo "gate green-light: $(wc -c </tmp/workshop2/GPU-2e436_0fed5_GPU) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'GPU-2e436_0fed5_GPU'
+  expect_limit_min:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Focus the login button then screenshot
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; md5sum /etc/passwd >'/tmp/common-route.sum' &&md5sum -c '/tmp/common-route.sum'; true ; } > /tmp/workshop2/23ed6281f
+            echo "gate Prepare_App2: $(wc -c </tmp/workshop2/23ed6281f) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '23ed6281f'
+  threads_list:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Marco approves anonymization
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; /bin/ls -g ./; true ; } > /tmp/workshop2/1xGyZ3lT
+            echo "gate rl-2a: $(wc -c </tmp/workshop2/1xGyZ3lT) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - '1xGyZ3lT'
+  horseSys:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Route the bandwidth cap in 100 chunks
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; printf '%d\n' 95 455 436 409 85 | tail -n 1 | head -n 4 | tail -n8; true ; } > /tmp/workshop2/fnv_fefbec
+            echo "gate shippit: $(wc -c </tmp/workshop2/fnv_fefbec) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'fnv_fefbec'
+  ITM-SECTION-MAX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Another Inspection Round
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; grep -r case /etc/default 2>/dev/null | cut -d: -f1 | sort -u; true ; } > /tmp/workshop2/v7.7.38
+            echo "gate blast-off: $(wc -c </tmp/workshop2/v7.7.38) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'v7.7.38'
+  c8-1b-60-ff:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Skip backup if the slow query log is empty
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; touch -d '2020-01-01 12:00' "/tmp/snapshot.txt" && date -r "/tmp/snapshot.txt"; true ; } > /tmp/workshop2/PANO59708
+            echo "gate auh-check: $(wc -c </tmp/workshop2/PANO59708) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'PANO59708'
+  testLoadUser:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: L878
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; fallocate -l 100K "/tmp/rig.csv" && ls -lh "/tmp/rig.csv"; true ; } > /tmp/workshop2/h3a7hgr0v3
+            echo "gate zed-verify: $(wc -c </tmp/workshop2/h3a7hgr0v3) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'h3a7hgr0v3'
+  Papa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Grounding Before Charge
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; echo -n 'meeting moved to 3pm'; echo; true ; } > /tmp/workshop2/P_51800
+            echo "gate vb: $(wc -c </tmp/workshop2/P_51800) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'P_51800'
+  SmartSizeNode:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Let the property tests rest a while
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -type d -path '*/tab' -exec ls -1d "{}" \; 2> /dev/null | sort | head -20; true ; } > /tmp/workshop2/Af
+            echo "gate helios-beta: $(wc -c </tmp/workshop2/Af) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'Af'
+  decodeWithWindow:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Nightly Window Resize NET708
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; lscpu -J | head -n6; true ; } > /tmp/workshop2/ton3-holl0w-dream-cli3n7
+            echo "gate produce-quick-test-matrix: $(wc -c </tmp/workshop2/ton3-holl0w-dream-cli3n7) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'ton3-holl0w-dream-cli3n7'
+  scale_full_disable_pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: Texture weapon stats and profile
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; echo $PATH|tr : '\n'|sed 's/^/- /'|fold -w 39|awk '{print NF}'|shuf -n 1; true ; } > /tmp/workshop2/ab-Backup.dev
+            echo "gate canary: $(wc -c </tmp/workshop2/ab-Backup.dev) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'ab-Backup.dev'
+  l1075z:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: file Q3 numbers ref cc49
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; shuf -i 1-931 -n 11 | paste -sd+; true ; } > /tmp/workshop2/module_mapper
+            echo "gate qa-01: $(wc -c </tmp/workshop2/module_mapper) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'module_mapper'
+  sortlazy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/workshop2
+      - run:
+          name: 25 proxy the health endpoint
+          command: |
+            mkdir -p /tmp/workshop2
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | grep -m 4 'sbin' | cut -d: -f1; true ; } > /tmp/workshop2/CRANetradE
+            echo "gate perseus-plus: $(wc -c </tmp/workshop2/CRANetradE) bytes total"
+      - persist_to_workspace:
+          root: /tmp/workshop2
+          paths:
+            - 'CRANetradE'
+workflows:
+  run:
+    jobs:
+      - nav-task
+      - file_stage
+      - hardCtx
+      - fiona-run:
+          requires:
+            - nav-task
+            - file_stage
+            - hardCtx
+      - echo-4:
+          requires:
+            - nav-task
+            - file_stage
+            - hardCtx
+      - rollout:
+          requires:
+            - nav-task
+            - file_stage
+            - hardCtx
+      - delta:
+          requires:
+            - nav-task
+            - file_stage
+            - hardCtx
+      - build-staging-release-candidate:
+          requires:
+            - nav-task
+            - file_stage
+            - hardCtx
+      - q4-release:
+          requires:
+            - nav-task
+            - file_stage
+            - hardCtx
+      - push-it:
+          requires:
+            - nav-task
+            - file_stage
+            - hardCtx
+      - java17-build:
+          requires:
+            - nav-task
+            - file_stage
+            - hardCtx
+      - hueTEXTURE
+      - PatternEnum:
+          requires:
+            - hueTEXTURE
+      - RolloutImage:
+          requires:
+            - PatternEnum
+      - IOS_Y:
+          requires:
+            - PatternEnum
+      - detach-when:
+          requires:
+            - IOS_Y
+      - bob-run:
+          requires:
+            - detach-when
+      - DEEP_BUCKET_SETTINGS:
+          requires:
+            - detach-when
+      - z_scale:
+          requires:
+            - DEEP_BUCKET_SETTINGS
+      - sanity:
+          requires:
+            - z_scale
+      - xverax:
+          requires:
+            - z_scale
+      - TempFunc:
+          requires:
+            - xverax
+      - nov15-release:
+          requires:
+            - TempFunc
+      - Save-Writer2:
+          requires:
+            - TempFunc
+      - RATE_SECRET:
+          requires:
+            - Save-Writer2
+      - wip-metrics-crash:
+          requires:
+            - RATE_SECRET
+      - LANGUAGE_MT_DE:
+          requires:
+            - RATE_SECRET
+      - Shade2IRQ:
+          requires:
+            - LANGUAGE_MT_DE
+      - DATA-899:
+          requires:
+            - Shade2IRQ
+      - profilesById:
+          requires:
+            - Shade2IRQ
+      - salt_:
+          requires:
+            - profilesById
+      - november:
+          requires:
+            - salt_
+      - teardown_cont:
+          requires:
+            - salt_
+      - Split-ViewConfig:
+          requires:
+            - teardown_cont
+      - v5-rc5:
+          requires:
+            - Split-ViewConfig
+      - ed-78-cc-76-ba-f7:
+          requires:
+            - Split-ViewConfig
+      - assert_segment_inner:
+          requires:
+            - ed-78-cc-76-ba-f7
+      - QA_VERIFY_7:
+          requires:
+            - assert_segment_inner
+      - card__legend:
+          requires:
+            - assert_segment_inner
+      - cube_register:
+          requires:
+            - card__legend
+      - green-light:
+          requires:
+            - cube_register
+      - RULE_H:
+          requires:
+            - cube_register
+      - expect_limit_min:
+          requires:
+            - RULE_H
+      - Prepare_App2:
+          requires:
+            - expect_limit_min
+      - l
+      - threads_list:
+          requires:
+            - l
+      - rl-2a:
+          requires:
+            - threads_list
+      - expect_graph_quick:
+          requires:
+            - threads_list
+      - horseSys:
+          requires:
+            - expect_graph_quick
+      - shippit:
+          requires:
+            - horseSys
+      - globeish:
+          requires:
+            - horseSys
+      - ITM-SECTION-MAX:
+          requires:
+            - globeish
+      - blast-off:
+          requires:
+            - ITM-SECTION-MAX
+      - Stage-Model:
+          requires:
+            - ITM-SECTION-MAX
+      - c8-1b-60-ff:
+          requires:
+            - Stage-Model
+      - auh-check:
+          requires:
+            - c8-1b-60-ff
+      - deferPendingCountMax:
+          requires:
+            - c8-1b-60-ff
+      - testLoadUser:
+          requires:
+            - deferPendingCountMax
+      - zed-verify:
+          requires:
+            - testLoadUser
+      - internal_publish:
+          requires:
+            - testLoadUser
+      - Papa:
+          requires:
+            - internal_publish
+      - vb:
+          requires:
+            - Papa
+      - undo_-_key:
+          requires:
+            - Papa
+      - SmartSizeNode:
+          requires:
+            - undo_-_key
+      - helios-beta:
+          requires:
+            - SmartSizeNode
+      - gradient_temp_get_pipe:
+          requires:
+            - SmartSizeNode
+      - decodeWithWindow:
+          requires:
+            - gradient_temp_get_pipe
+      - produce-quick-test-matrix:
+          requires:
+            - decodeWithWindow
+      - article_spawn_next:
+          requires:
+            - decodeWithWindow
+      - scale_full_disable_pipe:
+          requires:
+            - article_spawn_next
+      - canary:
+          requires:
+            - scale_full_disable_pipe
+      - littleFrost:
+          requires:
+            - scale_full_disable_pipe
+      - l1075z:
+          requires:
+            - littleFrost
+      - qa-01:
+          requires:
+            - l1075z
+      - device400:
+          requires:
+            - l1075z
+      - sortlazy:
+          requires:
+            - device400
+      - perseus-plus:
+          requires:
+            - sortlazy
